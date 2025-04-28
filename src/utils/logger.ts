@@ -18,21 +18,4 @@ export const logger = pino(
 );
 
 
-// src/utils/logger.ts
-
-export function logRequestResponse() {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
-
-    descriptor.value = async function (...args: any[]) {
-      console.log(`🛫 Request to ${propertyKey} with params:`, args);
-      const result = await originalMethod.apply(this, args);
-      console.log(`🛬 Response from ${propertyKey}:`, result?.status?.(), await result?.json?.());
-      return result;
-    };
-
-    return descriptor;
-  };
-}
-
 

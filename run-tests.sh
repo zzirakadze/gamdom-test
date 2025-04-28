@@ -13,9 +13,14 @@ COMMAND=$1
 BROWSER=$2
 
 
-if [ "$IS_DOCKER" == "" ]; then
-  export IS_DOCKER=true
+if [ -z "$IS_DOCKER" ]; then
+  if grep -qE '/docker/' /proc/1/cgroup 2>/dev/null; then
+    export IS_DOCKER=true
+  else
+    export IS_DOCKER=false
+  fi
 fi
+
 
 if [ -z "$COMMAND" ]; then
   echo "No command specified, running ALL tests by default."

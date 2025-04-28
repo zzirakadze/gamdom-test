@@ -41,7 +41,7 @@ AfterAll(async function () {
 
 Before(async function () {
   const context = await browser.newContext({
-    viewport: null, // Fullscreen / maximize effect
+    viewport: null,
   });
   page = await context.newPage();
   this.page = page;

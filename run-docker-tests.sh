@@ -52,4 +52,8 @@ else
   exit 1
 fi
 
-docker run --name $CONTAINER_NAME --rm -e TEST_TYPE=$COMMAND -e BROWSER=$BROWSER -p 35431:35431 $IMAGE_NAME bash -c "$RUN_COMMAND"
+docker run --name $CONTAINER_NAME --rm \
+  --env-file .env \
+  -e TEST_TYPE=$COMMAND \
+  -e BROWSER=$BROWSER \
+  $IMAGE_NAME bash -c "$RUN_COMMAND"

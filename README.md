@@ -153,13 +153,10 @@ This will:
 
 Docker gives you isolated, predictable environment. **No local installation problems.**
 
-First, build the Docker image:
 
-```bash
-docker-compose build
-```
+Then run tests inside the container:
 
-Then run tests inside container:
+Important: **DO NOT FORGET TO **  set IS_DOCKER=true in your environment variables before running the tests in docker.
 
 ```bash
 ./run-docker.sh all
