@@ -1,5 +1,3 @@
-// src/tests/api/steps/jira.steps.ts
-
 import { Given, When, Then, BeforeAll } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { JiraService } from '../../../services/jira/jiraService';
