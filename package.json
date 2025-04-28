@@ -1,0 +1,39 @@
+{
+  "name": "gamdom-test",
+  "version": "1.0.0",
+  "description": "Test task for Technical interview",
+  "main": "index.js",
+  "scripts": {
+    "test:chromium": "cross-env BROWSER=chromium IS_DOCKER=${IS_DOCKER} npx cucumber-js \"src/tests/ui/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/ui/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/ui/hooks/**/*.ts\" --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}'",
+    "test:firefox": "cross-env BROWSER=firefox IS_DOCKER=${IS_DOCKER} npx cucumber-js \"src/tests/ui/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/ui/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/ui/hooks/**/*.ts\" --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}' --parallel 4",
+    "test:webkit": "cross-env BROWSER=webkit IS_DOCKER=${IS_DOCKER} npx cucumber-js \"src/tests/ui/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/ui/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/ui/hooks/**/*.ts\" --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}' --parallel 4",
+    "test:smoke": "cross-env BROWSER=chromium IS_DOCKER=${IS_DOCKER} npx cucumber-js \"src/tests/ui/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/ui/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/ui/hooks/**/*.ts\" --tags @smoke --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}'",
+    "test:api": "cross-env BROWSER=chromium npx cucumber-js \"src/tests/api/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/api/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/api/hooks/**/*.ts\" --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}'",
+    "test:ui": "cross-env BROWSER=chromium IS_DOCKER=${IS_DOCKER} npx cucumber-js \"src/tests/ui/features/**/*.feature\" --require-module ts-node/register --require \"src/tests/ui/steps/**/*.ts\" --require \"cucumber.config.ts\" --require \"src/tests/ui/hooks/**/*.ts\" --format allure-cucumberjs/reporter --format-options '{\"resultsDir\": \"allure-results\"}'",
+    "test:all": "npm run test:api && npm run test:ui",
+    "allure:generate": "mkdir -p allure-results/history && cp -r allure-report/history allure-results/ || true && allure generate --clean allure-results -o allure-report",
+    "allure:open": "allure open allure-report",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.52.0",
+    "@reportportal/agent-js-cucumber": "^5.5.1",
+    "allure-cucumberjs": "^3.2.1",
+    "allure-js-commons": "^3.2.1",
+    "allure-playwright": "^3.2.1",
+    "cross-env": "^7.0.3",
+    "cucumber": "^6.0.7",
+    "dotenv": "^16.5.0",
+    "pino-pretty": "^13.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "pino": "^9.6.0"
+  }
+}

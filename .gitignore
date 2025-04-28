@@ -1,0 +1,17 @@
+# Node
+node_modules/
+dist/
+*.log
+
+# Playwright outputs
+playwright-report/
+test-results/
+reports/
+
+# Environment variables
+.env
+allure-report
+allure-results
+
+.idea/
+.idea

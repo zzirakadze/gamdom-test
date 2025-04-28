@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  gamdom-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gamdom-tests
+    environment:
+      - BASE_URL=${BASE_URL}
+      - USERNAME=${USERNAME}
+      - PASSWORD=${PASSWORD}
+      - BROWSER=${BROWSER}
+      - JIRA_BASE_URL=${JIRA_BASE_URL}
+      - JIRA_AUTH_TOKEN=${JIRA_AUTH_TOKEN}
+      - JIRA_PROJECT_KEY=${JIRA_PROJECT_KEY}
+      - IS_DOCKER=true
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["./run-tests.sh", "${TEST_TYPE}"]
